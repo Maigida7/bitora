@@ -2,167 +2,169 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#03050b">
-<title>BITORA — Tasks, Rewards & Opportunities</title>
+<title>BITORA | Earn • Connect • Rise</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-:root{--bg:#03050b;--panel:#0b1120;--panel2:#101b30;--gold:#ffd76a;--gold2:#e8a922;--blue:#00baff;--text:#f7f8ff;--muted:#98a7c2;--line:#24334b;--green:#5ff0b1;--purple:#a45cff}
+:root{--bg:#03050b;--panel:#0a1323;--gold:#ffd45d;--blue:#00baff;--muted:#9aa8bf;--line:#203650}
 *{box-sizing:border-box}
-html{background:var(--bg)}
-body{margin:0;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(ellipse at 50% 0,#112344 0,transparent 38%),linear-gradient(#03050b,#060914 60%,#02040a);min-height:100vh;padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+body{margin:0;background:radial-gradient(ellipse at 50% 0,#112c50 0,transparent 38%),var(--bg);color:#f7f8ff;font-family:Arial,Helvetica,sans-serif;padding-bottom:92px}
 button{font:inherit;cursor:pointer}
-button:disabled{opacity:.55;cursor:not-allowed}
-.wrap{max-width:600px;margin:auto;padding:16px 14px 22px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:3px 0 14px}
+.wrap{max-width:600px;margin:auto;padding:13px}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 2px}
 .brand{display:flex;align-items:center;gap:10px}
-.logo{width:49px;height:49px;border-radius:15px;display:grid;place-items:center;color:#10131b;font-size:30px;font-weight:1000;background:linear-gradient(140deg,#fff0a4,#ffc83d 55%,#b87913);box-shadow:0 0 25px #f6bb3d35;border:1px solid #ffe89b}
-.brand-name{font-size:22px;font-weight:1000;letter-spacing:2px}
-.tagline{font-size:9px;color:#aab7d0;letter-spacing:1px;margin-top:3px}
-.status{font-size:10px;color:var(--green);white-space:nowrap}
-.userline{display:flex;align-items:center;justify-content:space-between;margin:12px 2px}
-.userwelcome{font-size:12px;color:var(--muted)}
-.userwelcome strong{display:block;font-size:15px;color:var(--text);margin-top:3px}
-.premium-pill{font-size:10px;color:#171000;background:linear-gradient(90deg,#ffe995,#e8ae31);border-radius:30px;padding:5px 9px;font-weight:900;display:inline-block;margin-top:6px}
-.hero{position:relative;overflow:hidden;border-radius:22px;min-height:205px;margin:12px 0 14px;padding:17px 12px;background:radial-gradient(circle at 50% 45%,#12517a88,transparent 40%),radial-gradient(circle at 50% 100%,#d59b2d26,transparent 60%),linear-gradient(140deg,#050a17,#07162b 55%,#040812);border:1px solid #d4a73e80;box-shadow:inset 0 0 26px #0077ff13,0 8px 28px #0008;text-align:center}
-.hero:before,.hero:after{content:"";position:absolute;pointer-events:none;border-radius:50%;border:1px solid #12baff45;left:50%;top:42%;transform:translate(-50%,-50%);width:190px;height:190px;box-shadow:0 0 26px #00baff16}
-.hero:after{width:150px;height:200px;transform:translate(-50%,-50%) rotate(38deg);border-color:#ffcf5b7a}
-.globe{position:absolute;width:174px;height:174px;left:50%;top:39%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 25%,#4ed9ff 0,#1164a1 18%,#091d3b 54%,#020714 72%);border:1px solid #5fcfff75;box-shadow:0 0 25px #008cff66,inset -15px -10px 25px #000b;opacity:.78}
-.globe:before{content:"";position:absolute;inset:12px;border-radius:50%;border:1px solid #65caff6e;transform:rotate(-25deg) scaleX(.45)}
-.globe:after{content:"";position:absolute;inset:24px 4px;border-radius:50%;border:1px solid #65caff66;transform:rotate(25deg) scaleY(.45)}
-.hero-brand{position:relative;z-index:1;margin-top:7px;text-shadow:0 3px 15px #000}
-.crown{font-size:27px;filter:drop-shadow(0 0 9px #ffd85a)}
-.hero-b{font-size:62px;line-height:.95;font-weight:1000;font-style:italic;letter-spacing:-6px;color:#ffd75d;text-shadow:0 3px 0 #3d2605,0 0 16px #ffc94d88}
-.hero-title{font-size:27px;letter-spacing:3px;font-weight:1000;color:#ffe8a1;text-shadow:0 2px 10px #000}
-.hero-sub{font-size:8px;letter-spacing:2px;color:#d5e9ff;margin-top:5px}
-.hero-copy{position:relative;z-index:1;margin-top:10px;font-size:10px;color:#b9d7f6;letter-spacing:1.2px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}
-.stat{border:1px solid #d9ad4b75;border-radius:17px;padding:12px 10px;background:linear-gradient(135deg,#141a26,#070b13);display:flex;align-items:center;gap:9px;min-width:0}
-.stat-icon{font-size:24px;filter:drop-shadow(0 0 8px #ffc83c66)}
-.stat-label{font-size:10px;color:#b8c1d2}
-.stat-value{font-size:21px;font-weight:950;margin:3px 0;color:white;overflow-wrap:anywhere}
+.logo{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(135deg,#fff0a5,#f8c53d,#b77b12);color:#111;font-size:31px;font-weight:1000;box-shadow:0 0 20px #ffc94345}
+.brand-name{font-size:23px;font-weight:1000;letter-spacing:2px}
+.tagline{font-size:9px;letter-spacing:1.1px;color:#a9bbd4;margin-top:3px}
+.status{font-size:10px;color:#67edb6;text-align:right}
+.welcome{display:flex;align-items:center;gap:10px;margin:13px 0}
+.avatar{width:47px;height:47px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--gold);background:linear-gradient(135deg,#172e4a,#080d17);font-size:24px}
+.welcome small{color:var(--muted);font-size:11px}
+.welcome strong{display:block;font-size:14px;margin-top:4px}
+.premium{display:inline-block;background:linear-gradient(90deg,#ffe99b,#e5a928);color:#171000;border-radius:20px;padding:4px 9px;font-size:9px;font-weight:bold;margin-top:5px}
+.hero{position:relative;overflow:hidden;text-align:center;padding:15px 10px 17px;margin:10px 0 13px;min-height:230px;border:1px solid #e7b949;border-radius:20px;background:radial-gradient(circle at 50% 43%,#0e579277,transparent 42%),linear-gradient(145deg,#030713,#08172b 55%,#080913);box-shadow:inset 0 0 25px #008cff13}
+.globe{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);width:174px;height:174px;border-radius:50%;background:radial-gradient(circle at 35% 25%,#7ee7ff,#1478b6 20%,#09284d 56%,#030715 76%);border:1px solid #70d8ff88;box-shadow:0 0 30px #008dff66,inset -15px -12px 30px #000b}
+.globe:before{content:"";position:absolute;inset:13px 26px;border:1px solid #8edfff88;border-radius:50%;transform:scaleX(.5) rotate(25deg)}
+.globe:after{content:"";position:absolute;inset:30px 5px;border:1px solid #8edfff77;border-radius:50%;transform:scaleY(.48) rotate(-18deg)}
+.hero-content{position:relative;z-index:1}
+.crown{font-size:29px;color:#ffe48a;text-shadow:0 0 13px #ffbd30}
+.hero-b{font-size:65px;line-height:.9;font-weight:1000;font-style:italic;color:#ffe08a;text-shadow:0 3px 0 #7e4b0d,0 0 17px #ffd04d}
+.hero-title{font-size:29px;font-weight:1000;letter-spacing:3px;margin-top:5px;color:#ffe7a3;text-shadow:0 2px 9px #000}
+.hero-sub{font-size:8px;letter-spacing:2px;margin-top:6px}
+.hero-foot{font-size:10px;color:#b8dcf8;letter-spacing:1px;margin-top:12px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.stat{display:flex;align-items:center;gap:9px;padding:12px 9px;border:1px solid #d9ae4c88;border-radius:16px;background:linear-gradient(140deg,#151b27,#080c14);min-width:0}
+.stat-icon{font-size:26px}
+.stat-label{font-size:10px;color:#c2c9d8}
+.stat-value{font-size:21px;font-weight:1000;margin:4px 0;overflow-wrap:anywhere}
 .stat-sub{font-size:10px;color:var(--gold)}
-.quicknav{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #16baff;border-radius:16px;background:linear-gradient(110deg,#071020,#0a1325);box-shadow:0 0 15px #008cff25;margin:12px 0 18px;overflow:hidden}
-.quicknav button{border:0;border-right:1px solid #168ee55c;background:transparent;color:white;padding:12px 2px 10px;font-weight:800;font-size:10px}
-.quicknav button:last-child{border:0}
-.quicknav span{display:block;font-size:23px;margin-bottom:5px}
-.banner{position:relative;overflow:hidden;border-radius:18px;padding:17px 15px;margin:13px 0;border:1px solid #e6ad3f;background:radial-gradient(ellipse at 100% 20%,#f4b52c4a,transparent 45%),linear-gradient(120deg,#171019,#090c18 55%,#23160c);box-shadow:inset 0 0 24px #d99a2c15}
-.banner:after{content:"🎁";position:absolute;right:10px;bottom:10px;font-size:58px;opacity:.23;pointer-events:none}
-.banner h2,.banner h3,.banner p,.banner button{position:relative;z-index:1}
-.banner h2{font-size:21px;margin:0 0 5px}
-.banner h3{font-size:23px;margin:0;color:var(--gold);line-height:1.15}
-.banner p{font-size:12px;color:#e5e9f4;margin:8px 0 13px}
-.banner .btn{width:auto;min-width:145px}
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:22px 2px 11px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);margin:13px 0 18px;border:1px solid var(--blue);border-radius:14px;overflow:hidden;background:#071326;box-shadow:0 0 15px #008cff25}
+.quick button{background:transparent;border:0;border-right:1px solid #1c7dc866;color:white;padding:12px 2px;font-size:10px;font-weight:bold}
+.quick button:last-child{border:0}
+.quick span{display:block;font-size:25px;margin-bottom:5px}
+.banner{border:1px solid #e4b34c;border-radius:17px;padding:17px 14px;margin:13px 0 20px;background:radial-gradient(ellipse at 100% 40%,#b57c293d,transparent 45%),linear-gradient(115deg,#17131a,#080b14 65%,#211508);position:relative;overflow:hidden}
+.banner:after{content:"🎁";position:absolute;right:8px;bottom:12px;font-size:56px;opacity:.23}
+.banner h2{font-size:22px;margin:0 0 5px;position:relative}
+.banner h3{font-size:25px;color:var(--gold);margin:0;position:relative}
+.banner p{font-size:12px;margin:9px 0 15px;color:#e6e9f1;position:relative}
+.btn{border:0;border-radius:12px;padding:12px 14px;width:100%;font-weight:900;min-height:42px}
+.gold{background:linear-gradient(100deg,#ffe995,#f8c23d,#d99c21);color:#171006}
+.blue{background:linear-gradient(105deg,#00aaff,#1455ff);color:white;box-shadow:0 0 13px #007bff33}
+.purple{background:linear-gradient(100deg,#b33cff,#5b20ed);color:white}
+.dark{background:#121c2c;border:1px solid #293b55;color:#fff}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:21px 2px 12px}
 .section-head h2{font-size:17px;margin:0}
-.section-head button{background:none;border:0;color:#d5e8ff;font-size:11px}
-.task-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.task-card{border:1px solid #168fe8a8;border-radius:16px;background:linear-gradient(145deg,#0b1a30,#080d18);padding:13px 9px;text-align:center;box-shadow:inset 0 0 18px #007fff0b;min-width:0}
-.task-icon{font-size:28px;margin-bottom:7px}
-.task-card h3{font-size:12px;margin:0 0 7px}
-.task-card .points{font-size:12px;font-weight:950;color:var(--gold);margin-bottom:10px}
-.btn{border:0;border-radius:12px;padding:12px 15px;min-height:42px;font-weight:900;width:100%}
-.btn-gold{color:#151006;background:linear-gradient(100deg,#ffe88e,#f5c23e,#d99b22);box-shadow:0 4px 16px #f4b62b22}
-.btn-blue{color:white;background:linear-gradient(100deg,#009cff,#145bff);box-shadow:0 0 13px #008cff40}
-.btn-purple{color:white;background:linear-gradient(100deg,#a83cff,#5425e9)}
-.btn-dark{color:var(--text);background:#121c2c;border:1px solid var(--line)}
-.task-card .btn{min-height:35px;padding:8px 4px;font-size:11px}
+.section-head button{background:transparent;border:0;color:#c9e7ff;font-size:11px}
+.tasks-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.task-card{padding:13px 9px;text-align:center;border:1px solid #198ee7;border-radius:16px;background:linear-gradient(145deg,#0c1b30,#080d18);box-shadow:inset 0 0 16px #008cff0b;min-width:0}
+.task-icon{font-size:30px;margin:1px 0 8px}
+.task-card h3{font-size:12px;margin:0 0 8px}
+.reward{font-size:12px;color:var(--gold);font-weight:900;margin-bottom:12px}
+.task-card .btn{font-size:11px;padding:9px 3px;min-height:36px}
 .campaign-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.campaign{border-radius:16px;padding:12px;border:1px solid #1d9ff0;background:linear-gradient(135deg,#0b1d32,#0a0d18);min-width:0}
-.campaign .emoji{font-size:27px}
-.campaign h3{font-size:13px;margin:7px 0}
-.campaign p{font-size:10px;line-height:1.45;color:var(--muted);margin:0 0 11px}
-.campaign .btn{font-size:10px;padding:9px 4px;min-height:34px}
-.community-strip{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #b7a1ff66;background:linear-gradient(120deg,#18122c,#0b1120);border-radius:16px;margin:13px 0}
-.community-strip .emoji{font-size:29px}
-.community-strip h3{font-size:13px;margin:0 0 4px}
-.community-strip p{font-size:10px;color:var(--muted);margin:0;line-height:1.4}
-.page{display:none}
-.page.active{display:block}
-.page-title{margin:8px 2px 15px}
-.page-title h1{font-size:24px;margin:0 0 6px}
-.page-title p{font-size:12px;color:var(--muted);margin:0;line-height:1.5}
-.card{border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#111b2d,#080d17);padding:16px;margin-bottom:12px}
+.campaign{padding:13px 11px;border:1px solid #1a9ae9;border-radius:16px;background:linear-gradient(145deg,#0d1b30,#080d17);min-width:0}
+.campaign .icon{font-size:29px}
+.campaign h3{font-size:13px;margin:8px 0}
+.campaign p{font-size:11px;color:var(--muted);line-height:1.5;margin:0 0 12px}
+.campaign .btn{font-size:10px;padding:9px 3px}
+.community{display:flex;align-items:center;gap:11px;padding:14px;margin-top:13px;border:1px solid #7665a9;border-radius:16px;background:linear-gradient(110deg,#18132c,#0b1221)}
+.community .icon{font-size:32px}
+.community h3{font-size:13px;margin:0 0 5px}
+.community p{font-size:10px;color:var(--muted);line-height:1.5;margin:0}
+.community .btn{width:auto;min-height:40px}
+.page{display:none}.page.active{display:block}
+.page-title{margin:8px 2px 15px}.page-title h1{font-size:24px;margin:0 0 6px}.page-title p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
+.card{border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#101b2c,#080d17);padding:15px;margin-bottom:12px}
 .card h3{font-size:15px;margin:8px 0}
-.muted{color:var(--muted);font-size:12px;line-height:1.6}
-.eyebrow{font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
-.notice{border-radius:12px;background:#09213a;border:1px solid #1d74a8;color:#c3e7ff;padding:12px;font-size:12px;line-height:1.5;overflow-wrap:anywhere;margin:10px 0}
-.notice.error{background:#241019;border-color:#9e3b56;color:#ffbdcb}
-.hidden{display:none!important}
-.task{border:1px solid var(--line);border-radius:15px;padding:14px;margin-bottom:10px;background:#0d1524}
-.task-row{display:flex;justify-content:space-between;gap:10px}
-.task h3{font-size:13px;margin:0 0 6px}
-.task p{font-size:11px;color:var(--muted);line-height:1.5;margin:0}
-.task-reward{font-size:12px;font-weight:900;color:var(--gold);white-space:nowrap}
-.bottom-nav{position:fixed;z-index:10;bottom:0;left:0;right:0;padding:9px 4px calc(8px + env(safe-area-inset-bottom));background:#070b15f5;border-top:1px solid #26334a;backdrop-filter:blur(18px)}
-.nav-inner{max-width:600px;margin:auto;display:flex;justify-content:space-around}
-.nav-item{flex:1;min-width:0;border:0;background:transparent;color:#8390a8;font-size:10px;padding:3px 0}
-.nav-item span{display:block;font-size:21px;margin-bottom:4px}
-.nav-item.active{color:var(--gold);text-shadow:0 0 12px #ffcf4c55}
-footer{text-align:center;color:#687892;font-size:10px;line-height:1.6;padding:22px 5px}
-.profile-avatar{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:28px;border:2px solid var(--gold);background:#18263b}
-@media(min-width:500px){.hero{min-height:220px}.globe{width:205px;height:205px}.hero-b{font-size:76px}.hero-title{font-size:34px}.task-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.wrap{padding-left:18px;padding-right:18px}}
+.muted{font-size:12px;line-height:1.6;color:var(--muted)}
+.notice{border:1px solid #24648b;border-radius:12px;background:#0a2035;color:#c3e5ff;padding:12px;font-size:12px;line-height:1.5;overflow-wrap:anywhere;margin:12px 0}
+.notice.error{border-color:#9d3a53;background:#25111a;color:#ffc2cd}
+.task-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.task-list-item{border:1px solid var(--line);border-radius:14px;background:#0d1625;padding:13px;margin-bottom:10px}
+.task-list-item h3{font-size:13px;margin:0 0 6px}.task-list-item p{font-size:11px;color:var(--muted);line-height:1.5;margin:0}
+.task-points{font-size:11px;color:var(--gold);font-weight:bold;white-space:nowrap}
+.bottom{position:fixed;z-index:9;bottom:0;left:0;right:0;padding:8px 3px calc(8px + env(safe-area-inset-bottom));border-top:1px solid #263248;background:#070b15f7;backdrop-filter:blur(15px)}
+.nav{max-width:600px;margin:auto;display:flex;justify-content:space-around}
+.nav button{flex:1;min-width:0;background:transparent;border:0;color:#8794ab;font-size:10px;padding:3px 0}
+.nav button span{display:block;font-size:22px;margin-bottom:4px}
+.nav button.active{color:var(--gold)}
+footer{text-align:center;color:#697893;font-size:10px;line-height:1.6;padding:23px 4px}
+@media(min-width:500px){.wrap{padding:18px}.tasks-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{min-height:245px}.globe{width:195px;height:195px}.hero-b{font-size:75px}.hero-title{font-size:35px}}
 </style>
 </head>
 <body>
 <main class="wrap">
-<header class="top">
+<header>
  <div class="brand"><div class="logo">B</div><div><div class="brand-name">BITORA</div><div class="tagline">TASKS ◆ REWARDS ◆ OPPORTUNITIES</div></div></div>
- <div class="status" id="connectionStatus">● Connecting</div>
+ <div class="status" id="status">● Open in Telegram</div>
 </header>
-<div class="userline">
- <div class="userwelcome">Welcome back<strong id="helloName">BITORA Member</strong><span class="premium-pill">★ BITORA MEMBER</span></div>
- <button class="btn btn-dark" style="width:auto;min-height:35px;padding:6px 10px" onclick="showPage('profile')">♙</button>
+
+<div class="welcome">
+ <div class="avatar">♛</div>
+ <div><small id="welcomeText">Welcome back,</small><strong id="memberName">BITORA Member</strong><span class="premium">★ MEMBER</span></div>
 </div>
 
 <section class="page active" id="page-home">
- <div class="hero"><div class="globe"></div><div class="hero-brand"><div class="crown">♛</div><div class="hero-b">B</div><div class="hero-title">BITORA</div><div class="hero-sub">TASKS ◆ REWARDS ◆ OPPORTUNITIES</div></div><div class="hero-copy">EARN • CONNECT • RISE</div></div>
+ <div class="hero"><div class="globe"></div><div class="hero-content"><div class="crown">♛</div><div class="hero-b">B</div><div class="hero-title">BITORA</div><div class="hero-sub">TASKS ◆ REWARDS ◆ OPPORTUNITIES</div><div class="hero-foot">EARN • CONNECT • RISE</div></div></div>
+
  <div class="stats">
   <div class="stat"><div class="stat-icon">🪙</div><div><div class="stat-label">Your Balance</div><div class="stat-value" id="balance">0</div><div class="stat-sub">BITORA Points</div></div></div>
-  <div class="stat"><div class="stat-icon">🔥</div><div><div class="stat-label">Day Streak</div><div class="stat-value" id="streakValue">0 Days</div><div class="stat-sub" id="streakLabel">Keep going!</div></div></div>
+  <div class="stat"><div class="stat-icon">🔥</div><div><div class="stat-label">Day Streak</div><div class="stat-value" id="streak">0 Days</div><div class="stat-sub">Keep going!</div></div></div>
  </div>
- <div class="quicknav">
+
+ <div class="quick">
   <button onclick="showPage('tasks')"><span>▣</span>Tasks</button>
   <button onclick="showPage('leaderboard')"><span>🏆</span>Leaderboard</button>
-  <button onclick="showPage('wallet')"><span>▣</span>Wallet</button>
+  <button onclick="showPage('wallet')"><span>👛</span>Wallet</button>
   <button onclick="showPage('premium')"><span>♛</span>Premium</button>
  </div>
- <div class="banner"><h2>Complete Tasks</h2><h3>Earn BITORA Points</h3><p>Real Tasks • Real Rewards • Real Opportunities</p><button class="btn btn-gold" onclick="showPage('tasks')">Start Earning　›</button></div>
+
+ <div class="banner"><h2>Complete Tasks</h2><h3>Earn BITORA Points</h3><p>Real Tasks • Real Rewards • Real Opportunities</p><button class="btn gold" style="width:auto;min-width:155px" onclick="showPage('tasks')">Start Earning　›</button></div>
+
  <div class="section-head"><h2>⚡ Featured Tasks</h2><button onclick="showPage('tasks')">View All　›</button></div>
- <div class="task-grid">
-  <div class="task-card"><div class="task-icon">🗓️</div><h3>Daily Check-in</h3><div class="points" id="featuredDailyPoints">Daily reward</div><button class="btn btn-blue" onclick="claimDaily()">Claim Now</button></div>
-  <div class="task-card"><div class="task-icon">✈️</div><h3>Join Telegram</h3><div class="points">Task reward</div><button class="btn btn-blue" onclick="showPage('tasks')">View Task</button></div>
-  <div class="task-card"><div class="task-icon">▶️</div><h3>Watch YouTube</h3><div class="points">Task reward</div><button class="btn btn-blue" onclick="showPage('tasks')">View Task</button></div>
-  <div class="task-card"><div class="task-icon">𝕏</div><h3>Follow X</h3><div class="points">Task reward</div><button class="btn btn-blue" onclick="showPage('tasks')">View Task</button></div>
+ <div class="tasks-grid">
+  <div class="task-card"><div class="task-icon">🗓️</div><h3>Daily Check-in</h3><div class="reward" id="dailyRewardLabel">Daily Reward</div><button class="btn blue" onclick="claimDaily()">Claim Now</button></div>
+  <div class="task-card"><div class="task-icon">✈️</div><h3>Join Telegram</h3><div class="reward">Task Reward</div><button class="btn blue" onclick="showPage('tasks')">View Task</button></div>
+  <div class="task-card"><div class="task-icon">▶️</div><h3>Watch YouTube</h3><div class="reward">Task Reward</div><button class="btn blue" onclick="showPage('tasks')">View Task</button></div>
+  <div class="task-card"><div class="task-icon">𝕏</div><h3>Follow X</h3><div class="reward">Task Reward</div><button class="btn blue" onclick="showPage('tasks')">View Task</button></div>
  </div>
+
  <div class="section-head"><h2>🎯 Opportunities</h2><button onclick="showPage('campaigns')">Explore All　›</button></div>
  <div class="campaign-grid">
-  <div class="campaign"><div class="emoji">📣</div><h3>Sponsored Campaigns</h3><p>Discover partner tasks and special rewards when campaigns are published.</p><button class="btn btn-purple" onclick="showPage('campaigns')">Explore Campaigns ›</button></div>
-  <div class="campaign"><div class="emoji">👥</div><h3>Invite Friends & Earn</h3><p>Share your referral link when referral rewards are enabled.</p><button class="btn btn-gold" onclick="showPage('referrals')">Invite Friends ›</button></div>
+  <div class="campaign"><div class="icon">📣</div><h3>Sponsored Campaigns</h3><p>Discover partner tasks and special rewards from approved campaigns.</p><button class="btn purple" onclick="showPage('campaigns')">Explore Campaigns ›</button></div>
+  <div class="campaign"><div class="icon">👥</div><h3>Invite Friends & Earn</h3><p>Share your referral link when the referral program is enabled.</p><button class="btn gold" onclick="showPage('referrals')">Invite Now ›</button></div>
  </div>
- <div class="community-strip"><div class="emoji">🌐</div><div style="flex:1"><h3>BITORA Community</h3><p>Connect with the community and follow official announcements.</p></div><button class="btn btn-blue" style="width:auto;padding:9px" onclick="openCommunity()">Join</button></div>
- <div class="notice" id="dailyMessage">Open BITORA in Telegram to load your account securely.</div>
+
+ <div class="community"><div class="icon">🌐</div><div style="flex:1"><h3>BITORA Community</h3><p>Connect with the community and follow official announcements.</p></div><button class="btn blue" onclick="openCommunity()">Join</button></div>
+ <div id="message" class="notice">Open BITORA inside Telegram to securely load your account.</div>
 </section>
 
-<section class="page" id="page-tasks"><div class="page-title"><h1>⚡ Tasks & Rewards</h1><p>Complete genuine tasks. Rewards are credited only after server-side verification.</p></div><div id="tasksList"><div class="card muted">Loading tasks…</div></div><div class="notice">Only tasks supplied by the server are displayed. Task completion must be verified before rewards are credited.</div></section>
-<section class="page" id="page-leaderboard"><div class="page-title"><h1>🏆 Leaderboard</h1><p>Compete with BITORA members.</p></div><div class="card" style="text-align:center;padding:28px 16px"><div style="font-size:45px">🏆</div><h3>Leaderboard</h3><p class="muted">Rankings and weekly rewards will appear here after the leaderboard API and reward rules are enabled.</p><button class="btn btn-dark" onclick="refreshData()">Refresh</button></div></section>
-<section class="page" id="page-wallet"><div class="page-title"><h1>💎 Wallet</h1><p>BITORA Points and TON payment features.</p></div><div class="card"><div class="eyebrow">Your Points Balance</div><div class="stat-value" id="walletBalance">0</div><div class="stat-sub">BITORA Points • not cash or TON</div></div><div class="card"><div style="font-size:32px">💎</div><h3>Connect TON Wallet</h3><p class="muted">Wallet connection is not enabled yet. It will be added with a secure, verified payment flow.</p><button class="btn btn-blue" disabled>Coming Soon</button></div><div class="card"><h3>Withdraw</h3><p class="muted">Withdrawals are not available in this version. Never share your recovery phrase or private key.</p><button class="btn btn-dark" disabled>Not Available Yet</button></div></section>
-<section class="page" id="page-premium"><div class="page-title"><h1>♛ Premium Access</h1><p>Exclusive opportunities for eligible members.</p></div><div class="card" style="text-align:center"><div style="font-size:52px">👑</div><h3>Unlock More Opportunities</h3><p class="muted">Premium access will include special tasks and campaign benefits once entitlement and TON payment verification are complete.</p><ul class="muted" style="text-align:left;line-height:2"><li>Premium task access</li><li>Campaign early access</li><li>Premium profile badge</li><li>Clear reward and eligibility terms</li></ul><button class="btn btn-gold" disabled>Premium Payment Coming Soon</button><p class="muted">No payment is requested by this page.</p></div></section>
-<section class="page" id="page-campaigns"><div class="page-title"><h1>📣 Sponsored Campaigns</h1><p>Partner tasks will be listed here after approval and publication.</p></div><div class="card"><div style="font-size:35px">🎁</div><h3>Campaigns are being prepared</h3><p class="muted">Only approved, live campaigns will appear here. Campaign budgets, task completion and rewards must be verified by the server.</p></div></section>
-<section class="page" id="page-referrals"><div class="page-title"><h1>👥 Invite Friends</h1><p>Referral rewards will be available when the referral API is enabled.</p></div><div class="card"><div style="font-size:35px">🔗</div><h3>Your Referral Link</h3><p class="muted">Your personal referral link is not available yet.</p><button class="btn btn-gold" disabled>Referral Link Coming Soon</button></div></section>
-<section class="page" id="page-community"><div class="page-title"><h1>🌐 Community</h1><p>Connect with BITORA updates.</p></div><div class="card"><div style="font-size:36px">🌍</div><h3>BITORA Community</h3><p class="muted">The official community link must be configured before this button can open it.</p><button class="btn btn-blue" onclick="openCommunity()">Open Community</button></div></section>
-<section class="page" id="page-profile"><div class="page-title"><h1>♙ Profile</h1><p>Your Telegram account and app information.</p></div><div class="card"><div class="profile-avatar">♙</div><h3 id="profileName">BITORA Member</h3><p class="muted" id="profileUsername">Telegram username unavailable</p><div class="eyebrow">Telegram User ID</div><p id="profileId" class="muted">Unavailable</p><button class="btn btn-dark" onclick="refreshData()">Refresh Account</button></div><div class="card"><h3>Settings & Support</h3><p class="muted">Terms, privacy, language and support links will be added before public launch.</p><button class="btn btn-dark" onclick="showPage('settings')">Open Settings</button></div></section>
-<section class="page" id="page-settings"><div class="page-title"><h1>⚙ Settings</h1><p>BITORA app preferences.</p></div><div class="card"><h3>Language</h3><p class="muted">English interface</p><h3>Help & Support</h3><p class="muted">Official support link will be configured before launch.</p><h3>Privacy & Terms</h3><p class="muted">Terms and privacy pages must be published before public launch.</p></div></section>
-<div id="globalNotice" class="notice hidden" role="status"></div>
-<footer>BITORA · EARN. CONNECT. RISE.<br>Points are in-app rewards and do not represent guaranteed cash value.</footer>
+<section class="page" id="page-tasks"><div class="page-title"><h1>⚡ Tasks</h1><p>Complete genuine tasks and receive rewards after verification.</p></div><div id="tasksList"><div class="card muted">Open BITORA inside Telegram to load your tasks.</div></div><div class="notice">Only server-provided tasks are shown. A reward must be confirmed by the server.</div></section>
+
+<section class="page" id="page-leaderboard"><div class="page-title"><h1>🏆 Leaderboard</h1><p>Compete with BITORA members.</p></div><div class="card" style="text-align:center;padding:25px"><div style="font-size:48px">🏆</div><h3>Global Leaderboard</h3><p class="muted">Rankings and weekly rewards will appear when the leaderboard service is enabled.</p><button class="btn dark" onclick="refresh()">Refresh</button></div></section>
+
+<section class="page" id="page-wallet"><div class="page-title"><h1>💎 Wallet</h1><p>Your points and future TON features.</p></div><div class="card"><div class="muted">YOUR BITORA POINTS</div><div class="stat-value" id="walletBalance">0</div><p class="muted">Points are app rewards, not cash or TON.</p></div><div class="card"><div style="font-size:36px">💎</div><h3>Connect TON Wallet</h3><p class="muted">Secure wallet connection is not enabled yet.</p><button class="btn blue" disabled>Coming Soon</button></div><div class="card"><h3>Withdraw</h3><p class="muted">Withdrawals are unavailable until a secure payment system has been implemented.</p><button class="btn dark" disabled>Not Available Yet</button></div></section>
+
+<section class="page" id="page-premium"><div class="page-title"><h1>♛ Premium Access</h1><p>Exclusive opportunities for eligible members.</p></div><div class="card" style="text-align:center"><div style="font-size:52px">👑</div><h3>Unlock More Opportunities</h3><p class="muted">Premium tasks and benefits will appear here when payment verification and entitlement checks are enabled.</p><p class="muted">No payment is requested by this page.</p><button class="btn gold" disabled>Premium Coming Soon</button></div></section>
+
+<section class="page" id="page-campaigns"><div class="page-title"><h1>📣 Sponsored Campaigns</h1><p>Approved partner tasks and campaigns.</p></div><div class="card"><div style="font-size:40px">🎁</div><h3>Campaigns are being prepared</h3><p class="muted">Only approved and active campaigns will appear here after server configuration.</p></div></section>
+
+<section class="page" id="page-referrals"><div class="page-title"><h1>👥 Invite Friends</h1><p>Invite rewards will be enabled when the referral service is ready.</p></div><div class="card"><div style="font-size:40px">🔗</div><h3>Your Referral Link</h3><p class="muted">Your personal referral link will appear here when the backend supports it.</p><button class="btn gold" disabled>Coming Soon</button></div></section>
+
+<section class="page" id="page-profile"><div class="page-title"><h1>♙ Profile</h1><p>Your account information.</p></div><div class="card"><div class="avatar">♛</div><h3 id="profileName">BITORA Member</h3><p class="muted" id="profileUsername">Telegram username unavailable</p><p class="muted">Account ID: <span id="profileId">Unavailable</span></p><button class="btn dark" onclick="refresh()">Refresh Account</button></div><div class="card"><h3>Settings & Support</h3><p class="muted">Support, privacy and terms links will be added before public launch.</p><button class="btn dark" onclick="showPage('settings')">Settings</button></div></section>
+
+<section class="page" id="page-settings"><div class="page-title"><h1>⚙ Settings</h1><p>BITORA app settings.</p></div><div class="card"><h3>Language</h3><p class="muted">English</p><h3>Help & Support</h3><p class="muted">Official support link will be configured before launch.</p><h3>Privacy & Terms</h3><p class="muted">Policy links will be published before launch.</p></div></section>
+
+<footer>BITORA · EARN. CONNECT. RISE.<br>Points do not represent guaranteed cash value.</footer>
 </main>
 
-<nav class="bottom-nav"><div class="nav-inner">
-<button class="nav-item active" data-page="home" onclick="showPage('home')"><span>⌂</span>Home</button>
-<button class="nav-item" data-page="tasks" onclick="showPage('tasks')"><span>⚡</span>Tasks</button>
-<button class="nav-item" data-page="leaderboard" onclick="showPage('leaderboard')"><span>🏆</span>Leaderboard</button>
-<button class="nav-item" data-page="wallet" onclick="showPage('wallet')"><span>💎</span>Wallet</button>
-<button class="nav-item" data-page="profile" onclick="showPage('profile')"><span>♙</span>Profile</button>
+<nav class="bottom"><div class="nav">
+<button class="active" data-page="home" onclick="showPage('home')"><span>⌂</span>Home</button>
+<button data-page="tasks" onclick="showPage('tasks')"><span>⚡</span>Tasks</button>
+<button data-page="leaderboard" onclick="showPage('leaderboard')"><span>🏆</span>Leaderboard</button>
+<button data-page="wallet" onclick="showPage('wallet')"><span>💎</span>Wallet</button>
+<button data-page="profile" onclick="showPage('profile')"><span>♙</span>Profile</button>
 </div></nav>
 
 <script>
@@ -174,116 +176,86 @@ const initData=tg?tg.initData:"";
 
 function showPage(name){
  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- document.querySelectorAll(".nav-item").forEach(b=>b.classList.remove("active"));
- const page=document.getElementById("page-"+name);
- if(page)page.classList.add("active");
- const nav=document.querySelector('.nav-item[data-page="'+name+'"]');
- if(nav)nav.classList.add("active");
+ document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+ const page=document.getElementById("page-"+name);if(page)page.classList.add("active");
+ const nav=document.querySelector('.nav button[data-page="'+name+'"]');if(nav)nav.classList.add("active");
  if(name==="tasks")loadTasks();
  window.scrollTo({top:0,behavior:"smooth"});
 }
-function showNotice(message,error=false){
- const el=document.getElementById("globalNotice");
- el.textContent=message;
- el.classList.remove("hidden","error");
- if(error)el.classList.add("error");
+function fmt(v){return Number(v||0).toLocaleString("en-US")}
+function notify(msg,error=false){
+ const el=document.getElementById("message");el.textContent=msg;
+ el.className=error?"notice error":"notice";
 }
-async function api(path,options={}){
+async function api(path,method="GET",body){
  const headers={"X-Telegram-Init-Data":initData};
- if(options.body)headers["Content-Type"]="application/json";
- let response;
- try{
-  response=await fetch(API_BASE+path,{method:options.method||"GET",headers,body:options.body?JSON.stringify(options.body):undefined,mode:"cors",cache:"no-store"});
- }catch(e){throw new Error("Cannot reach BITORA API. Check the Worker URL and CORS settings.");}
- let data;
- try{data=await response.json()}catch(e){throw new Error("BITORA API returned an invalid response (HTTP "+response.status+").");}
- if(!response.ok||data.ok===false)throw new Error(data.error||"Request failed ("+response.status+").");
- return data;
+ const options={method,headers,cache:"no-store"};
+ if(body!==undefined){headers["Content-Type"]="application/json";options.body=JSON.stringify(body)}
+ let r;
+ try{r=await fetch(API_BASE+path,options)}catch(e){throw new Error("Cannot connect to BITORA API. Check Cloudflare Worker and CORS settings.")}
+ let d;try{d=await r.json()}catch(e){throw new Error("API response was invalid (HTTP "+r.status+").")}
+ if(!r.ok||d.ok===false)throw new Error(d.error||"Request failed (HTTP "+r.status+").");
+ return d;
 }
-function fmt(n){return Number(n||0).toLocaleString("en-US")}
-
-async function refreshData(){
- if(!initData){
-  document.getElementById("connectionStatus").textContent="● Open in Telegram";
-  document.getElementById("dailyMessage").textContent="Open BITORA inside Telegram to securely load your account.";
-  document.getElementById("tasksList").innerHTML='<div class="notice error">Open this Mini App inside Telegram to authenticate your account.</div>';
-  return;
- }
- document.getElementById("connectionStatus").textContent="● Connecting";
+async function refresh(){
+ if(!initData){document.getElementById("status").textContent="● Open in Telegram";return}
+ document.getElementById("status").textContent="● Connecting";
  try{
-  const data=await api("/api/me");
-  const user=data.user||{};
-  const name=user.first_name||user.username||"BITORA Member";
-  document.getElementById("balance").textContent=fmt(data.balance);
-  document.getElementById("walletBalance").textContent=fmt(data.balance);
-  document.getElementById("helloName").textContent=name;
+  const d=await api("/api/me");
+  const u=d.user||{};
+  const name=u.first_name||u.username||"BITORA Member";
+  document.getElementById("memberName").textContent=name;
   document.getElementById("profileName").textContent=name;
-  document.getElementById("profileUsername").textContent=user.username?"@"+user.username:"Telegram username unavailable";
-  document.getElementById("profileId").textContent=user.id||"Unavailable";
-  const daily=data.daily||{};
-  const streak=Number(daily.streak_day||daily.streak||0);
-  document.getElementById("streakValue").textContent=streak+" "+(streak===1?"Day":"Days");
-  document.getElementById("streakLabel").textContent=streak?"Keep going!":"Start your streak";
-  if(daily.claimed_today){
-   document.getElementById("featuredDailyPoints").textContent="Claimed today";
-   document.getElementById("dailyMessage").textContent="Today's reward has already been claimed.";
-  }else{
-   document.getElementById("featuredDailyPoints").textContent="Daily reward";
-   document.getElementById("dailyMessage").textContent="Your account is connected. Daily rewards are confirmed by the server.";
-  }
-  document.getElementById("connectionStatus").textContent="● Connected";
+  document.getElementById("profileUsername").textContent=u.username?"@"+u.username:"Telegram username unavailable";
+  document.getElementById("profileId").textContent=u.id||"Unavailable";
+  document.getElementById("balance").textContent=fmt(d.balance);
+  document.getElementById("walletBalance").textContent=fmt(d.balance);
+  const daily=d.daily||{};
+  const s=Number(daily.streak_day||daily.streak||0);
+  document.getElementById("streak").textContent=s+" "+(s===1?"Day":"Days");
+  document.getElementById("dailyRewardLabel").textContent=daily.claimed_today?"Claimed Today":"Daily Reward";
+  document.getElementById("status").textContent="● Connected";
+  notify(daily.claimed_today?"Today's reward has already been claimed.":"Your account is connected.");
   await loadTasks();
- }catch(e){
-  document.getElementById("connectionStatus").textContent="● Needs attention";
-  document.getElementById("dailyMessage").textContent=e.message;
-  showNotice(e.message,true);
- }
+ }catch(e){document.getElementById("status").textContent="● Needs attention";notify(e.message,true)}
 }
 async function claimDaily(){
- if(!initData){showNotice("Open BITORA inside Telegram before claiming rewards.",true);return;}
- document.getElementById("dailyMessage").textContent="Checking your reward…";
+ if(!initData){notify("Open BITORA inside Telegram before claiming your reward.",true);return}
+ notify("Checking daily reward…");
  try{
-  const data=await api("/api/daily",{method:"POST",body:{}});
-  document.getElementById("balance").textContent=fmt(data.balance);
-  document.getElementById("walletBalance").textContent=fmt(data.balance);
-  document.getElementById("streakValue").textContent=(data.streak_day||0)+" Days";
-  document.getElementById("featuredDailyPoints").textContent=data.already_claimed?"Claimed today":"+"+fmt(data.reward)+" points";
-  document.getElementById("dailyMessage").textContent=data.already_claimed?"Today's reward was already claimed.":"Daily reward confirmed by the server.";
-  showNotice(data.already_claimed?"Daily reward already claimed.":"Daily reward confirmed.");
- }catch(e){
-  document.getElementById("dailyMessage").textContent=e.message;
-  showNotice(e.message,true);
- }
+  const d=await api("/api/daily","POST",{});
+  if(d.balance!==undefined){document.getElementById("balance").textContent=fmt(d.balance);document.getElementById("walletBalance").textContent=fmt(d.balance)}
+  if(d.streak_day!==undefined)document.getElementById("streak").textContent=d.streak_day+" Days";
+  document.getElementById("dailyRewardLabel").textContent=d.already_claimed?"Claimed Today":"Reward Confirmed";
+  notify(d.already_claimed?"You have already claimed today's reward.":"Daily reward confirmed by the server.");
+ }catch(e){notify(e.message,true)}
 }
 async function loadTasks(){
  const list=document.getElementById("tasksList");
- if(!initData){list.innerHTML='<div class="notice error">Open BITORA inside Telegram to load available tasks.</div>';return;}
+ if(!initData){list.innerHTML='<div class="notice error">Open BITORA inside Telegram to load your tasks.</div>';return}
+ list.innerHTML='<div class="card muted">Loading tasks…</div>';
  try{
-  const data=await api("/api/tasks");
-  const tasks=Array.isArray(data.tasks)?data.tasks:[];
+  const d=await api("/api/tasks");
+  const tasks=Array.isArray(d.tasks)?d.tasks:[];
   list.replaceChildren();
-  if(!tasks.length){list.innerHTML='<div class="card"><h3>No live tasks yet</h3><p class="muted">New tasks will appear here when published by BITORA.</p></div>';return;}
+  if(!tasks.length){list.innerHTML='<div class="card"><h3>No live tasks yet</h3><p class="muted">Tasks will appear here when published by BITORA.</p></div>';return}
   tasks.forEach(t=>{
-   const c=document.createElement("div");c.className="task";
+   const box=document.createElement("div");box.className="task-list-item";
    const row=document.createElement("div");row.className="task-row";
    const info=document.createElement("div");
-   const h=document.createElement("h3");h.textContent=t.title||"BITORA Task";
-   const p=document.createElement("p");p.textContent=t.description||"See official task instructions.";
-   info.append(h,p);
-   const r=document.createElement("div");r.className="task-reward";r.textContent="+"+fmt(t.reward_points??t.reward)+" pts";
-   row.append(info,r);c.append(row);list.append(c);
+   const title=document.createElement("h3");title.textContent=t.title||"BITORA Task";
+   const desc=document.createElement("p");desc.textContent=t.description||"Follow the official task instructions.";
+   info.append(title,desc);
+   const reward=document.createElement("div");reward.className="task-points";reward.textContent="+"+fmt(t.reward_points??t.reward)+" pts";
+   row.append(info,reward);box.append(row);list.append(box);
   });
- }catch(e){
-  list.innerHTML="";
-  const n=document.createElement("div");n.className="notice error";n.textContent="Tasks could not load: "+e.message;list.append(n);
- }
+ }catch(e){list.innerHTML="";const n=document.createElement("div");n.className="notice error";n.textContent="Tasks could not load: "+e.message;list.append(n)}
 }
 function openCommunity(){
- if(COMMUNITY_URL==="https://t.me/"){showNotice("Official BITORA community link has not been configured yet.",true);return;}
- if(tg)tg.openTelegramLink(COMMUNITY_URL);
- else window.open(COMMUNITY_URL,"_blank","noopener");
+ if(COMMUNITY_URL==="https://t.me/"){notify("The official BITORA community URL has not been configured yet.",true);return}
+ if(tg)tg.openTelegramLink(COMMUNITY_URL);else window.open(COMMUNITY_URL,"_blank","noopener");
 }
-refreshData();
+refresh();
 </script>
 </body>
-  </html>
+ </html>
