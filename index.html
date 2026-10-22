@@ -240,15 +240,55 @@ function notify(msg,error=false){
  const el=document.getElementById("message");el.textContent=msg;
  el.className=error?"notice error":"notice";
 }
-async function api(path,method="GET",body){
- const headers={"X-Telegram-Init-Data":initData};
- const options={method,headers,cache:"no-store"};
- if(body!==undefined){headers["Content-Type"]="application/json";options.body=JSON.stringify(body)}
- let r;
- try{r=await fetch(API_BASE+path,options)}catch(e){throw new Error("Cannot connect to BITORA API. Check Cloudflare Worker and CORS settings.")}
- let d;try{d=await r.json()}catch(e){throw new Error("Invalid API response (HTTP "+r.status+").")}
- if(!r.ok||d.ok===false)throw new Error(d.error||"Request failed (HTTP "+r.status+").");
- return d;
+async function api(path, method = "GET", body) {
+  const headers = {
+    "X-Telegram-Init-Data": initData
+  };
+
+  const options = {
+    method,
+    headers,
+    cache: "no-store"
+  };
+
+  if (body !== undefined) {
+    headers["Content-Type"] = "application/json";
+    options.body = JSON.stringify(body);
+  }
+
+  let response;
+
+  try {
+    response = await fetch(API_BASE + path, options);
+  } catch (error) {
+    console.error("BITORA API network error:", error);
+
+    throw new Error(
+      "API connection failed. Check network, DNS and CORS. " +
+      "Endpoint: " + path +
+      ". Browser detail: " + (error?.message || "Unknown fetch error")
+    );
+  }
+
+  let data;
+
+  try {
+    data = await response.json();
+  } catch (error) {
+    throw new Error(
+      "API returned invalid JSON. HTTP " + response.status +
+      ", endpoint: " + path
+    );
+  }
+
+  if (!response.ok || data.ok === false) {
+    throw new Error(
+      (data.error || "API request failed") +
+      " (HTTP " + response.status + ", " + path + ")"
+    );
+  }
+
+  return data;
 }
 async function refresh(){
  if(!initData){document.getElementById("status").textContent="● Open in Telegram";return}
