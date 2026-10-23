@@ -226,7 +226,7 @@ const COMMUNITY_URL="https://t.me/";
 const tg=window.Telegram&&window.Telegram.WebApp?window.Telegram.WebApp:null;
 if(tg){tg.ready();tg.expand();try{tg.setHeaderColor("#03050b");tg.setBackgroundColor("#03050b")}catch(e){}}
 const initData=tg?tg.initData:"";
-
+console.log("BITORA Telegram initData length:", initData.length);
 function showPage(name){
  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
