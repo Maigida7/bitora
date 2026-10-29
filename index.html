@@ -87,7 +87,9 @@ async function refresh(){
  document.getElementById("profileUsername").textContent=u.username?"@"+u.username:"Telegram username unavailable";
  document.getElementById("profileId").textContent=u.telegram_user_id||u.id||"Unavailable";
  document.getElementById("balance").textContent=fmt(d.balance??u.balance);document.getElementById("walletBalance").textContent=fmt(d.balance??u.balance);
- const daily=d.daily||{};const s=Number(daily.streak_day??daily.streak??d.streak??0);
+ const daily = d.daily || {};
+const user = d.user || {};
+const s = Number(user.streak ?? d.streak ?? daily.streak_day ?? daily.streak ?? 0);
  document.getElementById("streak").textContent=s+" "+(s===1?"Day":"Days");
  document.getElementById("dailyLabel").textContent=daily.claimed_today?"Claimed Today":"Daily Reward";
  document.getElementById("status").textContent="● Connected";notify(daily.claimed_today?"Today's reward has already been claimed.":"Your account is connected.");
